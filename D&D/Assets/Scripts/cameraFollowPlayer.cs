@@ -5,7 +5,7 @@ using UnityEngine;
 public class cameraFollowPlayer : MonoBehaviour
 {
     public GameObject player;
-    public float rotationY = 45f;
+    public float rotationY = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +16,15 @@ public class cameraFollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + new Vector3(-8, 12, -8);
-        if(Input.GetKeyDown(KeyCode.E))
+        transform.position = player.transform.position;
+        if(Input.GetKey(KeyCode.E))
         {
-            rotationY += 90f;
+            rotationY += 0.5f;
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
-            rotationY -= 90f;
+            rotationY -= 0.5f;
         }
-        Camera.main.transform.rotation = Quaternion.Euler(45, rotationY, 0);
+        Camera.main.transform.rotation = Quaternion.Euler(0, rotationY, 0);
     }
 }
