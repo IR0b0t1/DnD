@@ -17,7 +17,7 @@ public class cameraFollowPlayer : MonoBehaviour
     void Update()
     {
         transform.position = player.transform.position;
-        if(Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
             rotationY += 0.5f;
         }
