@@ -25,6 +25,6 @@ public class cameraFollowPlayer : MonoBehaviour
         {
             rotationY -= 0.5f;
         }
-        Camera.main.transform.rotation = Quaternion.Euler(0, rotationY, 0);
+        Camera.main.transform.rotation = Quaternion.Euler(90, rotationY, 0);
     }
 }
