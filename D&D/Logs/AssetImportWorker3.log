@@ -1,0 +1,497 @@
+Using pre-set license
+Built from '2021.3/release' branch; Version is '2021.3.38f1 (7a2fa5d8d101) revision 8007589'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26100) 64bit ProfessionalEducation' Language: 'pl' Physical Memory: 32509 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.3.38f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker3
+-projectPath
+C:/Users/f_litewka/Documents/GitHub/DnD/D&D
+-logFile
+Logs/AssetImportWorker3.log
+-srvPort
+54488
+Successfully changed project path to: C:/Users/f_litewka/Documents/GitHub/DnD/D&D
+C:/Users/f_litewka/Documents/GitHub/DnD/D&D
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [7808] Host "[IP] 192.168.121.110 [Port] 0 [Flags] 2 [Guid] 1167450596 [EditorId] 1167450596 [Version] 1048832 [Id] WindowsEditor(7,ST9) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [7808] Host "[IP] 192.168.121.110 [Port] 0 [Flags] 2 [Guid] 1167450596 [EditorId] 1167450596 [Version] 1048832 [Id] WindowsEditor(7,ST9) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with {0} workers.
+Refreshing native plugins compatible for Editor in 62.98 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.38f1 (7a2fa5d8d101)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.38f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/f_litewka/Documents/GitHub/DnD/D&D/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) UHD Graphics 730 (ID=0x4682)
+    Vendor:   Intel
+    VRAM:     16254 MB
+    Driver:   32.0.101.6129
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.38f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.38f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.38f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56304
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.38f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002597 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 51.06 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.514 seconds
+Domain Reload Profiling:
+	ReloadAssembly (515ms)
+		BeginReloadAssembly (78ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (357ms)
+			LoadAssemblies (76ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (71ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (32ms)
+			SetupLoadedEditorAssemblies (224ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (51ms)
+				BeforeProcessingInitializeOnLoad (1ms)
+				ProcessInitializeOnLoadAttributes (113ms)
+				ProcessInitializeOnLoadMethodAttributes (53ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.003002 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.43 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Completed reload, in  1.152 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1152ms)
+		BeginReloadAssembly (109ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (13ms)
+		EndReloadAssembly (967ms)
+			LoadAssemblies (88ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (185ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (33ms)
+			SetupLoadedEditorAssemblies (666ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (48ms)
+				ProcessInitializeOnLoadAttributes (594ms)
+				ProcessInitializeOnLoadMethodAttributes (16ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.62 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3217 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 35 unused Assets / (1.7 MB). Loaded Objects now: 3689.
+Memory consumption went from 133.8 MB to 132.0 MB.
+Total: 3.777600 ms (FindLiveObjects: 0.302700 ms CreateObjectMapping: 0.240600 ms MarkObjects: 2.821700 ms  DeleteObjects: 0.410900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:CustomObjectIndexerAttribute: bc11b3a6c3213fcdd17b65e7da85e133 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002432 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.77 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Completed reload, in  1.288 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1289ms)
+		BeginReloadAssembly (132ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (32ms)
+		EndReloadAssembly (1081ms)
+			LoadAssemblies (82ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (247ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (44ms)
+			SetupLoadedEditorAssemblies (681ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (52ms)
+				ProcessInitializeOnLoadAttributes (592ms)
+				ProcessInitializeOnLoadMethodAttributes (25ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.50 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3180 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 31 unused Assets / (1.7 MB). Loaded Objects now: 3692.
+Memory consumption went from 130.5 MB to 128.8 MB.
+Total: 3.271300 ms (FindLiveObjects: 0.245600 ms CreateObjectMapping: 0.194200 ms MarkObjects: 2.475700 ms  DeleteObjects: 0.354400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:CustomObjectIndexerAttribute: bc11b3a6c3213fcdd17b65e7da85e133 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.002347 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.40 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Completed reload, in  1.054 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1054ms)
+		BeginReloadAssembly (111ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (27ms)
+		EndReloadAssembly (880ms)
+			LoadAssemblies (71ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (177ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (594ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (0ms)
+				BeforeProcessingInitializeOnLoad (37ms)
+				ProcessInitializeOnLoadAttributes (528ms)
+				ProcessInitializeOnLoadMethodAttributes (22ms)
+				AfterProcessingInitializeOnLoad (3ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.41 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3180 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 31 unused Assets / (1.7 MB). Loaded Objects now: 3695.
+Memory consumption went from 130.5 MB to 128.8 MB.
+Total: 2.468000 ms (FindLiveObjects: 0.232000 ms CreateObjectMapping: 0.081800 ms MarkObjects: 1.960000 ms  DeleteObjects: 0.193200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:CustomObjectIndexerAttribute: bc11b3a6c3213fcdd17b65e7da85e133 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 153642.478066 seconds.
+  path: Assets/Tree_Textures/normal_specular.png
+  artifactKey: Guid(e2382ac8c6888dd438476616caaa6708) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Tree_Textures/normal_specular.png using Guid(e2382ac8c6888dd438476616caaa6708) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2120cf0a6590abc458be5f0bec37e6f7') in 0.129720 seconds 
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 16.979176 seconds.
+  path: Assets/Fantasy Forest Environment Free Sample/Textures/dirt01.tga
+  artifactKey: Guid(30ec70ef60a2bb54ea2df6f72c77bdc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Fantasy Forest Environment Free Sample/Textures/dirt01.tga using Guid(30ec70ef60a2bb54ea2df6f72c77bdc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19bbff7f72053074851d877bbe1b7894') in 0.026038 seconds 
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.017617 seconds.
+  path: Assets/Fantasy Forest Environment Free Sample/Textures/grassmesh.png
+  artifactKey: Guid(4e364662e65fd2d4a995a4efe45af277) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Fantasy Forest Environment Free Sample/Textures/grassmesh.png using Guid(4e364662e65fd2d4a995a4efe45af277) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4931083fab50251f30732085c118e87b') in 0.024098 seconds 
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Fantasy Forest Environment Free Sample/Textures/tree_branches.png
+  artifactKey: Guid(1d49d1e2d8a2b97478e3e0355dbf3a07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Fantasy Forest Environment Free Sample/Textures/tree_branches.png using Guid(1d49d1e2d8a2b97478e3e0355dbf3a07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53abf756b41b46a0abc6d0f5ad9147c2') in 0.021342 seconds 
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003536 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.48 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Completed reload, in  1.253 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1254ms)
+		BeginReloadAssembly (123ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (30ms)
+		EndReloadAssembly (1051ms)
+			LoadAssemblies (83ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (237ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (41ms)
+			SetupLoadedEditorAssemblies (664ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (50ms)
+				ProcessInitializeOnLoadAttributes (581ms)
+				ProcessInitializeOnLoadMethodAttributes (22ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.59 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3180 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 31 unused Assets / (1.7 MB). Loaded Objects now: 3702.
+Memory consumption went from 130.6 MB to 128.9 MB.
+Total: 3.260200 ms (FindLiveObjects: 0.219100 ms CreateObjectMapping: 0.095600 ms MarkObjects: 2.685900 ms  DeleteObjects: 0.258600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:CustomObjectIndexerAttribute: bc11b3a6c3213fcdd17b65e7da85e133 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 335.755992 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Scene/SceneSetting/DMsetting.asset
+  artifactKey: Guid(7389d9d8454215545a7dbeeb47cab778) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Scene/SceneSetting/DMsetting.asset using Guid(7389d9d8454215545a7dbeeb47cab778) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3af45bc50b89e43e4320cfa1298b95a1') in 0.025997 seconds 
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Scene/SceneSetting/QualitySettings01.preset
+  artifactKey: Guid(586a0aced563f4144a7c32d28e9d4f60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Scene/SceneSetting/QualitySettings01.preset using Guid(586a0aced563f4144a7c32d28e9d4f60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '343ce3c8b97bf10cc43ae4c84c63f4cc') in 0.023940 seconds 
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 5.975383 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Manual/URP-HighFidelity file setting.png
+  artifactKey: Guid(8fb5359c673b2484cbf112a0262381a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Manual/URP-HighFidelity file setting.png using Guid(8fb5359c673b2484cbf112a0262381a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fda2a7679a522ad7c9872b2a0ecb9f5') in 0.042351 seconds 
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 24.057341 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Prefab/BuildingUtilityDeco/Gate01.prefab
+  artifactKey: Guid(5c34461b69ee34041ba8b690de8618e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Prefab/BuildingUtilityDeco/Gate01.prefab using Guid(5c34461b69ee34041ba8b690de8618e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5711ecabe0abcc9554f3ce016db6591') in 0.077390 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Prefab/BuildingUtilityDeco/Gate03.prefab
+  artifactKey: Guid(df4f0c3649233de499546ca941aeca0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Prefab/BuildingUtilityDeco/Gate03.prefab using Guid(df4f0c3649233de499546ca941aeca0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d02f9e46d840619d2d53bc97cbeeb32') in 0.021991 seconds 
+Number of asset objects unloaded after import = 22
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Prefab/BuildingUtilityDeco/Portal01.prefab
+  artifactKey: Guid(fdc3fcdb18e51cf44b134308461bc877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Prefab/BuildingUtilityDeco/Portal01.prefab using Guid(fdc3fcdb18e51cf44b134308461bc877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35b58137d5d02a1764d78886fd756241') in 0.021971 seconds 
+Number of asset objects unloaded after import = 22
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Prefab/BuildingUtilityDeco/Ramp01.prefab
+  artifactKey: Guid(ff51072534cd21643830368d43410805) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Prefab/BuildingUtilityDeco/Ramp01.prefab using Guid(ff51072534cd21643830368d43410805) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0484684e15ed809591ed2173845bff17') in 0.021505 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 2.091087 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Prefab/GroundPadding/GroundPadding06_2.prefab
+  artifactKey: Guid(7871d574478b9154f846e1a7205353b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Prefab/GroundPadding/GroundPadding06_2.prefab using Guid(7871d574478b9154f846e1a7205353b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0123b2f3dcbebf59f1fc09bd4a1d12b8') in 0.020670 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Prefab/GroundPadding/GroundPadding06_3.prefab
+  artifactKey: Guid(782fa981bd8405b40ab8e052261c014c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Prefab/GroundPadding/GroundPadding06_3.prefab using Guid(782fa981bd8405b40ab8e052261c014c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '811677b5efea62e64231ad030e961149') in 0.019791 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 2.499103 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Prefab/LandMass/LM40RND.prefab
+  artifactKey: Guid(5da4a31af277fb04c96c4283c28a77d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Prefab/LandMass/LM40RND.prefab using Guid(5da4a31af277fb04c96c4283c28a77d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a5341b65b229dd52102010f8de7b79b') in 0.020550 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Prefab/LandMass/Shore01.prefab
+  artifactKey: Guid(814786cef81f89f4fb9eb9ca472e6a85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Prefab/LandMass/Shore01.prefab using Guid(814786cef81f89f4fb9eb9ca472e6a85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e84aa68b0d6bd60513f01e573b286630') in 0.024581 seconds 
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 11.717246 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Texture/Dot.png
+  artifactKey: Guid(33223149808819e4793a5817835f5dbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Texture/Dot.png using Guid(33223149808819e4793a5817835f5dbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9ab359ec666f6397191f7b56717ba1f') in 0.025745 seconds 
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Texture/WaterNormal02.png
+  artifactKey: Guid(c0c277cf515669843aed37f8d5cadf5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Texture/WaterNormal02.png using Guid(c0c277cf515669843aed37f8d5cadf5d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8f3fe1a30d04f62c6006eebaaa4530c') in 0.032152 seconds 
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Texture/Metallic Map.png
+  artifactKey: Guid(3626a2a04132c344a98ef4a81f21f5c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Texture/Metallic Map.png using Guid(3626a2a04132c344a98ef4a81f21f5c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9aaa5ad2b8b8aa7f60fef667b502643b') in 0.014309 seconds 
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/RPG Tiny Fantasy Forest PBR/Texture/WaterNormal03.png
+  artifactKey: Guid(0816264fbd2d3304cb340c9709026d57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/RPG Tiny Fantasy Forest PBR/Texture/WaterNormal03.png using Guid(0816264fbd2d3304cb340c9709026d57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ea77c868dcd35e6379df7e7921eff6f') in 0.019616 seconds 
+Number of asset objects unloaded after import = 2
