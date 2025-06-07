@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public LayerMask waterLayer;
+    public Animator _animator;
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -17,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        UpdateAnimation();
     }
 
     void FixedUpdate()
@@ -33,4 +36,30 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    void UpdateAnimation()
+    {
+        _animator.SetBool("IsRunningUp", false);
+        _animator.SetBool("IsRunningDown", false);
+        _animator.SetBool("IsRunningLeft", false);
+        _animator.SetBool("IsRunningRight", false);
+
+        if (movement.y > 0)
+        {
+            _animator.SetBool("IsRunningUp", true);
+        }
+        else if (movement.y < 0)
+        {
+            _animator.SetBool("IsRunningDown", true);
+        }
+        else if (movement.x < 0)
+        {
+            _animator.SetBool("IsRunningLeft", true);
+        }
+        else if (movement.x > 0)
+        {
+            _animator.SetBool("IsRunningRight", true);
+        }
+    }
+
 }
