@@ -1,4 +1,3 @@
-// EnemyData.cs
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Enemy/EnemyData")]

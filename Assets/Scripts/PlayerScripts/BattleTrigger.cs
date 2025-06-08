@@ -3,12 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class BattleTrigger : MonoBehaviour
 {
+    [Header("Enemy Settings")]
+    public string enemyType = "Goblin";
+
+    [Header("Battle Scene")]
+    public string battleSceneName = "BattleScene";
+
+    private bool hasTriggered = false;
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (hasTriggered) return;
+
+        if (other.CompareTag("Player"))
         {
-            BattleData.enemyType = other.name;
-            SceneManager.LoadScene("BattleScene");
+            hasTriggered = true;
+
+            BattleData.enemyType = enemyType;
+
+            SceneManager.LoadScene(battleSceneName);
         }
     }
 }
