@@ -7,7 +7,7 @@ public class BattleTrigger : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Encountered enemy!");
+            BattleData.enemyType = other.name;
             SceneManager.LoadScene("BattleScene");
         }
     }
