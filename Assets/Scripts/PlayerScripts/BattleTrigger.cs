@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class BattleTrigger : MonoBehaviour
 {
     [Header("Enemy Settings")]
-    public string enemyType = "Goblin";
+    public EnemyData enemyData;
 
     [Header("Battle Scene")]
     public string battleSceneName = "BattleScene";
@@ -19,7 +19,7 @@ public class BattleTrigger : MonoBehaviour
         {
             hasTriggered = true;
 
-            BattleData.enemyType = enemyType;
+            BattleData.currentEnemy = enemyData;
 
             SceneManager.LoadScene(battleSceneName);
         }

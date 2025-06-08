@@ -18,9 +18,13 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
-        SetEnemySprite();
-        StartCoroutine(ShowText("A " + BattleData.enemyType + " appears!"));
+        enemyHP = BattleData.currentEnemy.maxHP;
+        playerHP = PlayerData.currentHealth;
+
+        enemySpriteRenderer.sprite = BattleData.currentEnemy.enemySprite;
+        StartCoroutine(ShowText("A wild " + BattleData.currentEnemy.enemyName + " appears!"));
     }
+
 
     void SetEnemySprite()
     {
@@ -46,14 +50,31 @@ public class BattleManager : MonoBehaviour
         {
             int damage = Random.Range(15, 25);
             enemyHP -= damage;
-            StartCoroutine(ShowText("You cast a spell for " + damage + " damage!"));
-
-            if (enemyHP <= 0)
-                StartCoroutine(ShowText("Enemy defeated!"));
-            else
-                StartCoroutine(EnemyTurn());
+            StartCoroutine(MagicAttackRoutine(damage));
         }
     }
+
+    IEnumerator MagicAttackRoutine(int damage)
+    {
+        yield return ShowText("You cast a spell for " + damage + " damage!");
+        yield return new WaitForSeconds(1f);
+
+        if (enemyHP <= 0)
+        {
+            yield return ShowText("Enemy defeated!");
+            int expGained = BattleData.currentEnemy.expReward;
+            PlayerData.GainExperience(expGained);
+            yield return ShowText("You gained " + expGained + " EXP!");
+            yield return new WaitForSeconds(1.5f);
+            SceneManager.LoadScene("Overworld");
+        }
+        else
+        {
+            playerTurn = false;
+            StartCoroutine(EnemyTurn());
+        }
+    }
+
 
     public void OnItemButton()
     {
@@ -92,6 +113,12 @@ public class BattleManager : MonoBehaviour
         if (enemyHP <= 0)
         {
             yield return ShowText("Enemy defeated!");
+            int expGained = BattleData.currentEnemy.expReward;
+            PlayerData.GainExperience(expGained);
+            yield return ShowText("You gained " + expGained + " EXP!");
+
+            yield return new WaitForSeconds(1.5f);
+            SceneManager.LoadScene("Overworld");
         }
         else
         {
@@ -99,6 +126,7 @@ public class BattleManager : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
     }
+
 
     IEnumerator EnemyTurn()
     {
