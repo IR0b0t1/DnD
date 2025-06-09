@@ -83,6 +83,15 @@ public class InventoryManager : MonoBehaviour
         Debug.Log($"Equipped {type}: {(selectedItem != null ? selectedItem.itemName : "None")}");
     }
 
+    public void AddItem(EquipmentItem item)
+    {
+        if (!allItems.Contains(item))
+        {
+            allItems.Add(item);
+            Debug.Log($"Added {item.itemName} to inventory.");
+        }
+    }
+
     int GetEquippedIndex(ItemType type, List<EquipmentItem> items)
     {
         EquipmentItem equipped = type switch
