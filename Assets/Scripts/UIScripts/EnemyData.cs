@@ -6,6 +6,7 @@ public class EnemyData : ScriptableObject
     public string enemyName;
     public Sprite enemySprite;
     public int maxHP;
-    public int attackPower;
+    public int minAttackPower;
+    public int maxAttackPower;
     public int expReward;
 }

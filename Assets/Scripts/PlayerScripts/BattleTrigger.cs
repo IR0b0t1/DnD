@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class BattleTrigger : MonoBehaviour
 {
     [Header("Enemy Settings")]
+    public string enemyID = "";
     public EnemyData enemyData;
 
     [Header("Battle Scene")]
@@ -19,6 +20,9 @@ public class BattleTrigger : MonoBehaviour
         {
             hasTriggered = true;
 
+            GameState.playerPosition = other.transform.position;
+
+            BattleData.enemyType = enemyID;
             BattleData.currentEnemy = enemyData;
 
             SceneManager.LoadScene(battleSceneName);

@@ -3,28 +3,51 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BattleManager : MonoBehaviour
 {
     [Header("UI Elements")]
     public Image enemySpriteRenderer;
     public TextMeshProUGUI textbox;
+    public TextMeshProUGUI playerHealthText;
+    public TextMeshProUGUI enemyHealthText;
     public Sprite frogSprite;
     public Sprite goblinSprite;
 
-    private int playerHP = 100;
-    private int enemyHP = 50;
+    [Header("Enemy Data")]
+    private int enemyHP = 0;
+    private int enemyMaxHP = 100;
+    private int enemyMinAttackPower = 5;
+    private int enemyMaxAttackPower = 15;
+
+    [Header("Player Data")]
+    private int playerHP = 0;
+    private int playerMaxHP = 100;
+    private int playerStrenght = 10;
+    private int playerIntelligence = 10;
+    private int playerAgility = 10;
+    private int playerLuck = 10;
     private bool playerTurn = true;
+    private bool isBusy = false;
 
     void Start()
     {
         enemyHP = BattleData.currentEnemy.maxHP;
+        enemyMaxHP = BattleData.currentEnemy.maxHP;
         playerHP = PlayerData.currentHealth;
+        playerMaxHP = PlayerData.maxHealth;
+        playerStrenght = PlayerData.GetTotalStrength();
+        playerIntelligence = PlayerData.GetTotalIntelligence();
+        playerAgility = PlayerData.GetTotalAgility();
+        playerLuck = PlayerData.GetTotalLuck();
+        enemyMinAttackPower = BattleData.currentEnemy.minAttackPower;
+        enemyMaxAttackPower = BattleData.currentEnemy.maxAttackPower;
 
         enemySpriteRenderer.sprite = BattleData.currentEnemy.enemySprite;
+        UpdateHealthUI();
         StartCoroutine(ShowText("A wild " + BattleData.currentEnemy.enemyName + " appears!"));
     }
-
 
     void SetEnemySprite()
     {
@@ -36,22 +59,39 @@ public class BattleManager : MonoBehaviour
 
     public void OnAttackButton()
     {
-        if (playerTurn)
+        if (!playerTurn || isBusy) return;
+        isBusy = true;
+
+        int damage = Random.Range(1, 5);
+        damage += PlayerData.GetTotalAttack();
+        damage *= playerStrenght;
+        if (playerLuck > Random.Range(0, 100))
         {
-            int damage = Random.Range(10, 20);
-            enemyHP -= damage;
-            StartCoroutine(PlayerAttackRoutine(damage));
+            damage *= 2;
+            StartCoroutine(ShowText("Critical hit!"));
         }
+        enemyHP -= damage;
+        if(enemyHP < 0) enemyHP = 0;
+        UpdateHealthUI();
+        StartCoroutine(PlayerAttackRoutine(damage));
     }
 
     public void OnMagicButton()
     {
-        if (playerTurn)
+        if (!playerTurn || isBusy) return;
+        isBusy = true;
+
+        int damage = Random.Range(1, 5);
+        damage *= playerIntelligence;
+        if (playerLuck > Random.Range(0, 100))
         {
-            int damage = Random.Range(15, 25);
-            enemyHP -= damage;
-            StartCoroutine(MagicAttackRoutine(damage));
+            damage *= 2;
+            StartCoroutine(ShowText("Critical magic hit!"));
         }
+        enemyHP -= damage;
+        if (enemyHP < 0) enemyHP = 0;
+        UpdateHealthUI();
+        StartCoroutine(MagicAttackRoutine(damage));
     }
 
     IEnumerator MagicAttackRoutine(int damage)
@@ -61,7 +101,7 @@ public class BattleManager : MonoBehaviour
 
         if (enemyHP <= 0)
         {
-            yield return ShowText("Enemy defeated!");
+            yield return ShowText(BattleData.currentEnemy.enemyName + " defeated!");
             int expGained = BattleData.currentEnemy.expReward;
             PlayerData.GainExperience(expGained);
             yield return ShowText("You gained " + expGained + " EXP!");
@@ -75,14 +115,37 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-
     public void OnItemButton()
     {
-        StartCoroutine(ShowText("You rummage through your bag... Nothing happens."));
+        if (!playerTurn || isBusy) return;
+        isBusy = true;
+
+        int baseHeal = Random.Range(1,5);
+        int bonusHeal = PlayerData.GetBonusHeal();
+        int totalHeal = baseHeal + bonusHeal;
+
+        playerHP += totalHeal;
+        if (playerHP > playerMaxHP) playerHP = playerMaxHP;
+
+        UpdateHealthUI();
+        StartCoroutine(ItemUseRoutine(totalHeal));
     }
+
+    IEnumerator ItemUseRoutine(int healAmount)
+    {
+        yield return ShowText("You used a healing ring and healed " + healAmount + " HP!");
+        yield return new WaitForSeconds(1f);
+
+        playerTurn = false;
+        StartCoroutine(EnemyTurn());
+    }
+
 
     public void OnEscapeButton()
     {
+        if (isBusy) return;
+        isBusy = true;
+
         StartCoroutine(EscapeRoutine());
     }
 
@@ -91,11 +154,12 @@ public class BattleManager : MonoBehaviour
         yield return ShowText("You try to escape...");
         yield return new WaitForSeconds(1f);
 
-        bool escaped = Random.value < 0.5f;
+        bool escaped = (Random.value * playerAgility) < 0.5f;
         if (escaped)
         {
             yield return ShowText("You got away!");
             yield return new WaitForSeconds(1f);
+            GameState.defeatedEnemies.Add(BattleData.enemyType);
             SceneManager.LoadScene("Overworld");
         }
         else
@@ -112,12 +176,13 @@ public class BattleManager : MonoBehaviour
 
         if (enemyHP <= 0)
         {
-            yield return ShowText("Enemy defeated!");
+            yield return ShowText(BattleData.currentEnemy.enemyName + " defeated!");
             int expGained = BattleData.currentEnemy.expReward;
             PlayerData.GainExperience(expGained);
             yield return ShowText("You gained " + expGained + " EXP!");
 
             yield return new WaitForSeconds(1.5f);
+            GameState.defeatedEnemies.Add(BattleData.enemyType);
             SceneManager.LoadScene("Overworld");
         }
         else
@@ -127,22 +192,40 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-
     IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1f);
-        yield return ShowText(BattleData.enemyType + " attacks!");
+        yield return ShowText(BattleData.currentEnemy.enemyName + " attacks!");
 
         int damage = Random.Range(5, 15);
         playerHP -= damage;
-        yield return ShowText("You took " + damage + " damage!");
-
-        playerTurn = true;
+        if (playerHP < 0) playerHP = 0;
+        UpdateHealthUI();
+        if ( playerHP <= 0)
+        {
+            yield return ShowText("You've been defeated!");
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene("Overworld");
+        }
+        else
+        {
+            yield return ShowText("You took " + damage + " damage!");
+            PlayerData.currentHealth = playerHP;
+            playerTurn = true;
+            isBusy = false;
+        }
     }
 
-    IEnumerator ShowText(string message)
+    void UpdateHealthUI()
+    {
+        playerHealthText.text = "HP: " + playerHP + " / " + playerMaxHP;
+        enemyHealthText.text = "HP: " + enemyHP + " / " + enemyMaxHP;
+    }
+
+    IEnumerator ShowText(string message, System.Action onComplete = null)
     {
         textbox.text = message;
         yield return new WaitForSeconds(1.5f);
+        onComplete?.Invoke();
     }
 }
