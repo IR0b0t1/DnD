@@ -28,7 +28,6 @@ public static class PlayerData
     {
         int baseAttack = attack;
         if (weapon != null) baseAttack += weapon.bonusAttack;
-        if (armor != null) baseAttack += armor.bonusAttack;
         return baseAttack;
     }
 

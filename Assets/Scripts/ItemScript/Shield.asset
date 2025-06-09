@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d3ac4d79d154845ba2b862d5e25358, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Shield
   itemType: 1
   icon: {fileID: 21300000, guid: a0c9e7e7a6f097a4e803204448b408e2, type: 3}
   bonusAttack: 0
@@ -21,3 +21,4 @@ MonoBehaviour:
   bonusIntelligence: 0
   bonusAgility: 0
   bonusLuck: 0
+  bonusHeal: 0

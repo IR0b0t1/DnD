@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d3ac4d79d154845ba2b862d5e25358, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  itemName: 
+  itemName: Sword
   itemType: 0
   icon: {fileID: 21300000, guid: ad4bde4ff881b433c9782cb194049b0f, type: 3}
   bonusAttack: 3
@@ -21,3 +21,4 @@ MonoBehaviour:
   bonusIntelligence: 0
   bonusAgility: 0
   bonusLuck: 0
+  bonusHeal: 0

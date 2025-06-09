@@ -64,7 +64,11 @@ public class BattleManager : MonoBehaviour
 
         int damage = Random.Range(1, 5);
         damage += PlayerData.GetTotalAttack();
-        damage *= playerStrenght;
+        int totalStrength = playerStrenght;
+        var weapon = InventoryManager.Instance.GetEquippedWeapon();
+        if (weapon != null)
+            totalStrength += weapon.bonusStrength;
+        damage *= totalStrength;
         if (playerLuck > Random.Range(0, 100))
         {
             damage *= 2;
@@ -121,7 +125,10 @@ public class BattleManager : MonoBehaviour
         isBusy = true;
 
         int baseHeal = Random.Range(1,5);
-        int bonusHeal = PlayerData.GetBonusHeal();
+        int bonusHeal = 0;
+        var accessory = InventoryManager.Instance.GetEquippedAccessory();
+        if (accessory != null)
+            bonusHeal += accessory.bonusHeal;
         int totalHeal = baseHeal + bonusHeal;
 
         playerHP += totalHeal;
