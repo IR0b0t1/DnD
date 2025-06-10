@@ -50,6 +50,10 @@ public class Chest : MonoBehaviour
             Debug.Log($"Chest '{chestID}' was already opened. (Visual updated, collider disabled)");
             return;
         }
+        else
+        {
+            Debug.Log($"Chest '{chestID}' is not opened yet. Ready for interaction.");
+        }
 
         isOpened = false;
         if (GetComponent<Collider2D>() != null)
@@ -76,11 +80,13 @@ public class Chest : MonoBehaviour
         if (InventoryManager.Instance != null && chestData != null && chestData.itemToGive != null)
         {
             InventoryManager.Instance.AddItem(chestData.itemToGive);
+            Debug.Log($"ShowMessage now");
             ShowMessage($"You found: {chestData.itemToGive.itemName}!");
         }
         else
         {
             Debug.LogError("Chest: InventoryManager, ChestData, or itemToGive is null! Cannot add item.", this);
+            Debug.Log($"ShowMessage now");
             ShowMessage("You found nothing...");
         }
 
@@ -97,6 +103,7 @@ public class Chest : MonoBehaviour
     {
         if (messageBoxPanel != null && messageTextUI != null)
         {
+            Debug.Log("MessageBoxPanel: " + messageBoxPanel + ", MessageTextUI: " + messageTextUI);
             Debug.Log("showing message: " + text);
             messageBoxPanel.SetActive(true);
             messageTextUI.text = text;
@@ -127,16 +134,28 @@ public class Chest : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerNear = false;
-            if (messageBoxPanel != null && messageBoxPanel.activeSelf)
-            {
-                CancelInvoke("HideMessage");
-                HideMessage();
-            }
-        }
-    }
+    // Ta pozornie prosta i sensowna metoda doprowadzi³a autora do za³amania nerwowego, poniewa¿ uwali³a ca³y system wiadomoœci. Shame on you, Unity and C#!!!!!!
+    //private void OnTriggerExit2D(Collider2D other)
+
+    //{
+
+    //    if (other.CompareTag("Player"))
+
+    //    {
+
+    //        isPlayerNear = false;
+
+    //        if (messageBoxPanel != null && messageBoxPanel.activeSelf)
+
+    //        {
+
+    //            CancelInvoke("HideMessage");
+
+    //            HideMessage();
+
+    //        }
+
+    //    }
+
+    //}
 }
