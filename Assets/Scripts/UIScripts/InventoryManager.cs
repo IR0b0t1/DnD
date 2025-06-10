@@ -2,15 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
 
-    public GameObject inventoryPanel;
-    public TMP_Dropdown weaponDropdown;
-    public TMP_Dropdown armorDropdown;
-    public TMP_Dropdown accessoryDropdown;
+    private GameObject inventoryPanel;
+    private TMP_Dropdown weaponDropdown;
+    private TMP_Dropdown ArmourDropdown;
+    private TMP_Dropdown accessoryDropdown;
 
     public List<EquipmentItem> allItems;
 
@@ -30,28 +31,76 @@ public class InventoryManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        inventoryPanel.SetActive(false);
-
         equippedWeapon = PlayerData.weapon;
         equippedArmor = PlayerData.armor;
         equippedAccessory = PlayerData.accessory;
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Overworld")
+        {
+            FindUIReferencesInScene();
+            if (inventoryPanel != null)
+            {
+                inventoryPanel.SetActive(false);
+            }
+        }
+    }
+
+    private void FindUIReferencesInScene()
+    {
+        inventoryPanel = GameObject.Find("InventoryPanel");
+        if (inventoryPanel == null) Debug.LogError("InventoryManager: InventoryPanel UI not found!");
+
+        weaponDropdown = GameObject.Find("WeaponDropdown")?.GetComponent<TMP_Dropdown>();
+        if (weaponDropdown == null) Debug.LogError("InventoryManager: WeaponDropdown UI not found!");
+
+        ArmourDropdown = GameObject.Find("ArmourDropdown")?.GetComponent<TMP_Dropdown>();
+        if (ArmourDropdown == null) Debug.LogError("InventoryManager: ArmourDropdown UI not found!");
+
+        accessoryDropdown = GameObject.Find("AccessoryDropdown")?.GetComponent<TMP_Dropdown>();
+        if (accessoryDropdown == null) Debug.LogError("InventoryManager: AccessoryDropdown UI not found!");
+
+        if (inventoryPanel != null && weaponDropdown != null && ArmourDropdown != null && accessoryDropdown != null)
+        {
+            PopulateDropdowns();
+        }
+    }
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            inventoryPanel.SetActive(!inventoryPanel.activeSelf);
-            if (inventoryPanel.activeSelf)
-                PopulateDropdowns();
+            if (inventoryPanel != null)
+            {
+                inventoryPanel.SetActive(!inventoryPanel.activeSelf);
+                if (inventoryPanel.activeSelf)
+                    PopulateDropdowns();
+            }
+            else
+            {
+                Debug.LogWarning("InventoryManager: Inventory Panel is missing, cannot toggle.");
+            }
         }
     }
 
     void PopulateDropdowns()
     {
-        PopulateDropdown(weaponDropdown, ItemType.Weapon);
-        PopulateDropdown(armorDropdown, ItemType.Armor);
-        PopulateDropdown(accessoryDropdown, ItemType.Accessory);
+        if (weaponDropdown != null) PopulateDropdown(weaponDropdown, ItemType.Weapon);
+        if (ArmourDropdown != null) PopulateDropdown(ArmourDropdown, ItemType.Armor);
+        if (accessoryDropdown != null) PopulateDropdown(accessoryDropdown, ItemType.Accessory);
     }
 
     void PopulateDropdown(TMP_Dropdown dropdown, ItemType type)
@@ -101,6 +150,10 @@ public class InventoryManager : MonoBehaviour
         {
             allItems.Add(item);
             Debug.Log($"Added {item.itemName} to inventory.");
+            if (inventoryPanel != null && inventoryPanel.activeSelf)
+            {
+                PopulateDropdowns();
+            }
         }
     }
 
