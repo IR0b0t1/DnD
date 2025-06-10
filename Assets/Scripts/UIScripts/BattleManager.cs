@@ -80,6 +80,32 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PlayerAttackRoutine(damage));
     }
 
+    IEnumerator PlayerAttackRoutine(int dmg)
+    {
+        yield return ShowText("You attack for " + dmg + " damage!");
+        yield return new WaitForSeconds(1f);
+
+        if (enemyHP <= 0)
+        {
+            yield return ShowText(BattleData.currentEnemy.enemyName + " defeated!");
+            int expGained = BattleData.currentEnemy.expReward;
+            PlayerData.GainExperience(expGained);
+            yield return ShowText("You gained " + expGained + " EXP!");
+            Debug.Log("Enemy defeated: " + BattleData.currentEnemyID);
+            GameState.defeatedEnemies.Add(BattleData.currentEnemyID);
+            playerHP += 20;
+            if (playerHP > playerMaxHP) playerHP = playerMaxHP;
+            PlayerData.currentHealth = playerHP;
+            yield return new WaitForSeconds(1.5f);
+            SceneManager.LoadScene("Overworld");
+        }
+        else
+        {
+            playerTurn = false;
+            StartCoroutine(EnemyTurn());
+        }
+    }
+
     public void OnMagicButton()
     {
         if (!playerTurn || isBusy) return;
@@ -109,6 +135,11 @@ public class BattleManager : MonoBehaviour
             int expGained = BattleData.currentEnemy.expReward;
             PlayerData.GainExperience(expGained);
             yield return ShowText("You gained " + expGained + " EXP!");
+            Debug.Log("Enemy defeated: " + BattleData.currentEnemyID);
+            GameState.defeatedEnemies.Add(BattleData.currentEnemyID);
+            playerHP += 20;
+            if (playerHP > playerMaxHP) playerHP = playerMaxHP;
+            PlayerData.currentHealth = playerHP;
             yield return new WaitForSeconds(1.5f);
             SceneManager.LoadScene("Overworld");
         }
@@ -165,8 +196,9 @@ public class BattleManager : MonoBehaviour
         if (escaped)
         {
             yield return ShowText("You got away!");
-            yield return new WaitForSeconds(1f);
-            GameState.defeatedEnemies.Add(BattleData.enemyType);
+            Debug.Log("Enemy defeated: " + BattleData.currentEnemyID);
+            GameState.defeatedEnemies.Add(BattleData.currentEnemyID);
+            yield return new WaitForSeconds(1.5f);
             SceneManager.LoadScene("Overworld");
         }
         else
@@ -176,28 +208,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator PlayerAttackRoutine(int dmg)
-    {
-        yield return ShowText("You attack for " + dmg + " damage!");
-        yield return new WaitForSeconds(1f);
-
-        if (enemyHP <= 0)
-        {
-            yield return ShowText(BattleData.currentEnemy.enemyName + " defeated!");
-            int expGained = BattleData.currentEnemy.expReward;
-            PlayerData.GainExperience(expGained);
-            yield return ShowText("You gained " + expGained + " EXP!");
-
-            yield return new WaitForSeconds(1.5f);
-            GameState.defeatedEnemies.Add(BattleData.enemyType);
-            SceneManager.LoadScene("Overworld");
-        }
-        else
-        {
-            playerTurn = false;
-            StartCoroutine(EnemyTurn());
-        }
-    }
 
     IEnumerator EnemyTurn()
     {
@@ -218,6 +228,8 @@ public class BattleManager : MonoBehaviour
         {
             yield return ShowText("You took " + damage + " damage!");
             PlayerData.currentHealth = playerHP;
+            yield return new WaitForSeconds(1f);
+            yield return ShowText("Your turn");
             playerTurn = true;
             isBusy = false;
         }
