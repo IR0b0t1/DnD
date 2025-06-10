@@ -32,6 +32,7 @@ public class Chest : MonoBehaviour
         spriteRenderer.sprite = openSprite;
         InventoryManager.Instance.AddItem(itemToGive);
         ShowMessage($"You found: {itemToGive.itemName}!");
+        GetComponent<Collider2D>().enabled = false;
     }
 
     private void ShowMessage(string text)
