@@ -18,3 +18,4 @@ MonoBehaviour:
   minAttackPower: 10
   maxAttackPower: 20
   expReward: 80
+  goldReward: 40

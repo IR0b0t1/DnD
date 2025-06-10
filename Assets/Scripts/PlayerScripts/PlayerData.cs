@@ -15,6 +15,8 @@ public static class PlayerData
     public static int experience = 0;
     public static int experienceToNextLevel = 100;
 
+    public static int currentGold = 100;
+
     public static EquipmentItem weapon;
     public static EquipmentItem armor;
     public static EquipmentItem accessory;
@@ -42,6 +44,12 @@ public static class PlayerData
     public static int GetTotalIntelligence() => intelligence + (weapon?.bonusIntelligence ?? 0) + (armor?.bonusIntelligence ?? 0);
     public static int GetTotalAgility() => agility + (weapon?.bonusAgility ?? 0) + (armor?.bonusAgility ?? 0);
     public static int GetTotalLuck() => luck + (weapon?.bonusLuck ?? 0) + (armor?.bonusLuck ?? 0);
+
+    public static void GainGold(int goldAmount)
+    {
+        currentGold += goldAmount;
+        Debug.Log("Gained " + goldAmount + " gold. Total: " + currentGold);
+    }
 
     public static void GainExperience(int exp)
     {

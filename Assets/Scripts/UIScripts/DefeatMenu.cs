@@ -5,6 +5,7 @@ public class DefeatMenu : MonoBehaviour
 {
     public void OnRestartButton()
     {
+        GameState.playerPosition = new Vector3(0, 0, 0);
         SceneManager.LoadScene("Overworld");
     }
 

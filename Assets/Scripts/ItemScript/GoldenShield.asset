@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d3ac4d79d154845ba2b862d5e25358, type: 3}
+  m_Name: GoldenShield
+  m_EditorClassIdentifier: 
+  itemName: Golden Shield
+  itemType: 1
+  icon: {fileID: 21300000, guid: 36d0dde85c975d340b0a8f4418475a81, type: 3}
+  price: 200
+  description: A golden shield. Great protection.
+  bonusAttack: 0
+  bonusDefense: 15
+  bonusStrength: 0
+  bonusIntelligence: 0
+  bonusAgility: 0
+  bonusLuck: 0
+  bonusHeal: 0

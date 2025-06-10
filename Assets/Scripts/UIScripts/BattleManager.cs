@@ -89,8 +89,10 @@ public class BattleManager : MonoBehaviour
         {
             yield return ShowText(BattleData.currentEnemy.enemyName + " defeated!");
             int expGained = BattleData.currentEnemy.expReward;
+            int goldGained = BattleData.currentEnemy.goldReward;
             PlayerData.GainExperience(expGained);
-            yield return ShowText("You gained " + expGained + " EXP!");
+            PlayerData.GainGold(goldGained);
+            yield return ShowText("You gained " + expGained + " EXP and " + goldGained + " gold!");
             Debug.Log("Enemy defeated: " + BattleData.currentEnemyID);
             GameState.defeatedEnemies.Add(BattleData.currentEnemyID);
             playerHP += 20;
@@ -133,8 +135,10 @@ public class BattleManager : MonoBehaviour
         {
             yield return ShowText(BattleData.currentEnemy.enemyName + " defeated!");
             int expGained = BattleData.currentEnemy.expReward;
+            int goldGained = BattleData.currentEnemy.goldReward;
             PlayerData.GainExperience(expGained);
-            yield return ShowText("You gained " + expGained + " EXP!");
+            PlayerData.GainGold(goldGained);
+            yield return ShowText("You gained " + expGained + " EXP and " + goldGained + " gold!");
             Debug.Log("Enemy defeated: " + BattleData.currentEnemyID);
             GameState.defeatedEnemies.Add(BattleData.currentEnemyID);
             playerHP += 20;

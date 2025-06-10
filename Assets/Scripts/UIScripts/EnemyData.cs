@@ -9,4 +9,5 @@ public class EnemyData : ScriptableObject
     public int minAttackPower;
     public int maxAttackPower;
     public int expReward;
+    public int goldReward;
 }

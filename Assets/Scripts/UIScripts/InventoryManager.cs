@@ -21,11 +21,20 @@ public class InventoryManager : MonoBehaviour
     void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
+        {
             Destroy(gameObject);
+        }
 
         inventoryPanel.SetActive(false);
+
+        equippedWeapon = PlayerData.weapon;
+        equippedArmor = PlayerData.armor;
+        equippedAccessory = PlayerData.accessory;
     }
 
     void Update()
@@ -71,12 +80,15 @@ public class InventoryManager : MonoBehaviour
         {
             case ItemType.Weapon:
                 equippedWeapon = selectedItem;
+                PlayerData.weapon = selectedItem;
                 break;
             case ItemType.Armor:
                 equippedArmor = selectedItem;
+                PlayerData.armor = selectedItem;
                 break;
             case ItemType.Accessory:
                 equippedAccessory = selectedItem;
+                PlayerData.accessory = selectedItem;
                 break;
         }
 

@@ -6,6 +6,7 @@ public class OverworldManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("OverworldManager: Setting player position to " + GameState.playerPosition);
         player.transform.position = GameState.playerPosition;
 
         BattleTrigger[] enemies = FindObjectsOfType<BattleTrigger>();
