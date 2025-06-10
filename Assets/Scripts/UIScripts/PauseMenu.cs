@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PauseMenu : MonoBehaviour
 {
-    private GameObject pauseMenuUI;
+    private GameObject pauseMenuPanel;
 
     private bool isPaused = false;
 
@@ -37,32 +37,32 @@ public class PauseMenu : MonoBehaviour
     {
         if (scene.name == "Overworld")
         {
-            FindPauseMenuUI();
-            if (pauseMenuUI != null)
+            FindpauseMenuPanel();
+            if (pauseMenuPanel != null)
             {
-                pauseMenuUI.SetActive(false);
+                pauseMenuPanel.SetActive(false);
             }
             Time.timeScale = 1f;
             isPaused = false;
         }
         else
         {
-            if (pauseMenuUI != null)
+            if (pauseMenuPanel != null)
             {
-                pauseMenuUI.SetActive(false);
+                pauseMenuPanel.SetActive(false);
             }
             Time.timeScale = 1f;
             isPaused = false;
         }
     }
 
-    private void FindPauseMenuUI()
+    private void FindpauseMenuPanel()
     {
-        pauseMenuUI = GameObject.Find("PauseMenuPanel");
-        if (pauseMenuUI == null)
+        pauseMenuPanel = GameObject.Find("PauseMenuPanel");
+        if (pauseMenuPanel == null)
         {
-            Debug.LogWarning("PauseMenu: PauseMenuUI GameObject not found in the current scene ('Overworld'). " +
-                             "Make sure it exists and is named 'PauseMenuUI'.");
+            Debug.LogWarning("PauseMenu: pauseMenuPanel GameObject not found in the current scene ('Overworld'). " +
+                             "Make sure it exists and is named 'pauseMenuPanel'.");
         }
     }
 
@@ -70,7 +70,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseMenuUI != null)
+            if (pauseMenuPanel != null)
             {
                 if (isPaused)
                     Resume();
@@ -79,16 +79,16 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("PauseMenu: Cannot toggle pause menu as PauseMenuUI reference is missing.");
+                Debug.LogWarning("PauseMenu: Cannot toggle pause menu as pauseMenuPanel reference is missing.");
             }
         }
     }
 
     public void Resume()
     {
-        if (pauseMenuUI != null)
+        if (pauseMenuPanel != null)
         {
-            pauseMenuUI.SetActive(false);
+            pauseMenuPanel.SetActive(false);
             Time.timeScale = 1f;
             isPaused = false;
             Debug.Log("Game Resumed.");
@@ -97,9 +97,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        if (pauseMenuUI != null)
+        if (pauseMenuPanel != null)
         {
-            pauseMenuUI.SetActive(true);
+            pauseMenuPanel.SetActive(true);
             Time.timeScale = 0f;
             isPaused = true;
             Debug.Log("Game Paused.");
