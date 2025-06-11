@@ -28,9 +28,10 @@ public class InventoryManager : MonoBehaviour
     public TextMeshProUGUI playerDataIntelligenceText;
     public TextMeshProUGUI playerDataAgilityText;
     public TextMeshProUGUI playerDataLuckText;
-    public TextMeshProUGUI playerLevelText;
-    public TextMeshProUGUI playerExpText;
-    public TextMeshProUGUI playerNameText;
+    public TextMeshProUGUI playerDataLevelText;
+    public TextMeshProUGUI playerDataExpText;
+    public TextMeshProUGUI playerDataNameText;
+    public TextMeshProUGUI playerDataGold;
 
     void Awake()
     {
@@ -89,7 +90,7 @@ public class InventoryManager : MonoBehaviour
         if (accessoryDropdown == null) Debug.LogError("InventoryManager: AccessoryDropdown UI not found!");
 
         playerDataHealthText = GameObject.Find("PlayerDataHealth")?.GetComponent<TextMeshProUGUI>();
-        if (playerDataHealthText == null) Debug.LogError("InventoryManager: PlayerDataHealth TextMeshProUGUI not found! Name it exactly 'PlayerDataHealth' in the Hierarchy.");
+        if (playerDataHealthText == null) Debug.LogError("InventoryManager: PlayerDataHealth TextMeshProUGUI not found!");
         playerDataAttackText = GameObject.Find("PlayerDataAttack")?.GetComponent<TextMeshProUGUI>();
         if (playerDataAttackText == null) Debug.LogError("InventoryManager: PlayerDataAttack TextMeshProUGUI not found!");
         playerDataDefenseText = GameObject.Find("PlayerDataDefense")?.GetComponent<TextMeshProUGUI>();
@@ -102,12 +103,14 @@ public class InventoryManager : MonoBehaviour
         if (playerDataAgilityText == null) Debug.LogError("InventoryManager: PlayerDataAgility TextMeshProUGUI not found!");
         playerDataLuckText = GameObject.Find("PlayerDataLuck")?.GetComponent<TextMeshProUGUI>();
         if (playerDataLuckText == null) Debug.LogError("InventoryManager: PlayerDataLuck TextMeshProUGUI not found!");
-        playerLevelText = GameObject.Find("PlayerDataLevel")?.GetComponent<TextMeshProUGUI>();
-        if (playerLevelText == null) Debug.LogError("InventoryManager: PlayerDataLevel TextMeshProUGUI not found!");
-        playerExpText = GameObject.Find("PlayerDataExp")?.GetComponent<TextMeshProUGUI>();
-        if (playerExpText == null) Debug.LogError("InventoryManager: PlayerDataExp TextMeshProUGUI not found!");
-        playerNameText = GameObject.Find("PlayerDataName")?.GetComponent<TextMeshProUGUI>();
-        if (playerExpText == null) Debug.LogError("InventoryManager: PlayerDataName TextMeshProUGUI not found!");
+        playerDataLevelText = GameObject.Find("PlayerDataLevel")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataLevelText == null) Debug.LogError("InventoryManager: PlayerDataLevel TextMeshProUGUI not found!");
+        playerDataExpText = GameObject.Find("PlayerDataExp")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataExpText == null) Debug.LogError("InventoryManager: PlayerDataExp TextMeshProUGUI not found!");
+        playerDataNameText = GameObject.Find("PlayerDataName")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataExpText == null) Debug.LogError("InventoryManager: PlayerDataName TextMeshProUGUI not found!");
+        playerDataGold = GameObject.Find("PlayerDataGold")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataGold == null) Debug.LogError("InventoryManager: PlayerDataGold TextMeshProUGUI not found!");
 
         if (inventoryPanel != null && weaponDropdown != null && ArmourDropdown != null && accessoryDropdown != null)
         {
@@ -250,17 +253,21 @@ public class InventoryManager : MonoBehaviour
         {
             playerDataLuckText.text = $"Luck: {PlayerData.GetTotalLuck()}";
         }
-        if (playerLevelText != null)
+        if (playerDataLevelText != null)
         {
-            playerLevelText.text = $"LV: {PlayerData.level}";
+            playerDataLevelText.text = $"LV: {PlayerData.level}";
         }
-        if (playerExpText != null)
+        if (playerDataExpText != null)
         {
-            playerExpText.text = $"Exp: {PlayerData.currentExp}/{PlayerData.expToNextLevel}";
+            playerDataExpText.text = $"Exp: {PlayerData.currentExp}/{PlayerData.expToNextLevel}";
         }
-        if (playerNameText != null)
+        if (playerDataNameText != null)
         {
-            playerNameText.text = PlayerData.playerName;
+            playerDataNameText.text = PlayerData.playerName;
+        }
+        if (playerDataGold != null)
+        {
+            playerDataGold.text = $"Gold: {PlayerData.currentGold}";
         }
     }
 }
