@@ -13,11 +13,24 @@ public class InventoryManager : MonoBehaviour
     private TMP_Dropdown ArmourDropdown;
     private TMP_Dropdown accessoryDropdown;
 
+    [Header("Inventory Items")]
     public List<EquipmentItem> allItems;
 
     private EquipmentItem equippedWeapon;
     private EquipmentItem equippedArmor;
     private EquipmentItem equippedAccessory;
+
+    [Header("Player Data UI Textboxes")]
+    public TextMeshProUGUI playerDataHealthText;
+    public TextMeshProUGUI playerDataAttackText;
+    public TextMeshProUGUI playerDataDefenseText;
+    public TextMeshProUGUI playerDataStrengthText;
+    public TextMeshProUGUI playerDataIntelligenceText;
+    public TextMeshProUGUI playerDataAgilityText;
+    public TextMeshProUGUI playerDataLuckText;
+    public TextMeshProUGUI playerLevelText;
+    public TextMeshProUGUI playerExpText;
+    public TextMeshProUGUI playerNameText;
 
     void Awake()
     {
@@ -34,6 +47,8 @@ public class InventoryManager : MonoBehaviour
         equippedWeapon = PlayerData.weapon;
         equippedArmor = PlayerData.armor;
         equippedAccessory = PlayerData.accessory;
+
+        PlayerData.InitializePlayerData();
     }
 
     void OnEnable()
@@ -55,6 +70,7 @@ public class InventoryManager : MonoBehaviour
             {
                 inventoryPanel.SetActive(false);
             }
+            UpdatePlayerStatsUI();
         }
     }
 
@@ -72,12 +88,33 @@ public class InventoryManager : MonoBehaviour
         accessoryDropdown = GameObject.Find("AccessoryDropdown")?.GetComponent<TMP_Dropdown>();
         if (accessoryDropdown == null) Debug.LogError("InventoryManager: AccessoryDropdown UI not found!");
 
+        playerDataHealthText = GameObject.Find("PlayerDataHealth")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataHealthText == null) Debug.LogError("InventoryManager: PlayerDataHealth TextMeshProUGUI not found! Name it exactly 'PlayerDataHealth' in the Hierarchy.");
+        playerDataAttackText = GameObject.Find("PlayerDataAttack")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataAttackText == null) Debug.LogError("InventoryManager: PlayerDataAttack TextMeshProUGUI not found!");
+        playerDataDefenseText = GameObject.Find("PlayerDataDefense")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataDefenseText == null) Debug.LogError("InventoryManager: PlayerDataDefense TextMeshProUGUI not found!");
+        playerDataStrengthText = GameObject.Find("PlayerDataStrength")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataStrengthText == null) Debug.LogError("InventoryManager: PlayerDataStrength TextMeshProUGUI not found!");
+        playerDataIntelligenceText = GameObject.Find("PlayerDataIntelligence")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataIntelligenceText == null) Debug.LogError("InventoryManager: PlayerDataIntelligence TextMeshProUGUI not found!");
+        playerDataAgilityText = GameObject.Find("PlayerDataAgility")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataAgilityText == null) Debug.LogError("InventoryManager: PlayerDataAgility TextMeshProUGUI not found!");
+        playerDataLuckText = GameObject.Find("PlayerDataLuck")?.GetComponent<TextMeshProUGUI>();
+        if (playerDataLuckText == null) Debug.LogError("InventoryManager: PlayerDataLuck TextMeshProUGUI not found!");
+        playerLevelText = GameObject.Find("PlayerDataLevel")?.GetComponent<TextMeshProUGUI>();
+        if (playerLevelText == null) Debug.LogError("InventoryManager: PlayerDataLevel TextMeshProUGUI not found!");
+        playerExpText = GameObject.Find("PlayerDataExp")?.GetComponent<TextMeshProUGUI>();
+        if (playerExpText == null) Debug.LogError("InventoryManager: PlayerDataExp TextMeshProUGUI not found!");
+        playerNameText = GameObject.Find("PlayerDataName")?.GetComponent<TextMeshProUGUI>();
+        if (playerExpText == null) Debug.LogError("InventoryManager: PlayerDataName TextMeshProUGUI not found!");
+
         if (inventoryPanel != null && weaponDropdown != null && ArmourDropdown != null && accessoryDropdown != null)
         {
             PopulateDropdowns();
+            UpdatePlayerStatsUI();
         }
     }
-
 
     void Update()
     {
@@ -87,7 +124,10 @@ public class InventoryManager : MonoBehaviour
             {
                 inventoryPanel.SetActive(!inventoryPanel.activeSelf);
                 if (inventoryPanel.activeSelf)
+                {
                     PopulateDropdowns();
+                    UpdatePlayerStatsUI();
+                }
             }
             else
             {
@@ -141,6 +181,8 @@ public class InventoryManager : MonoBehaviour
                 break;
         }
 
+        PlayerData.RecalculateAndAdjustHealth();
+        UpdatePlayerStatsUI();
         Debug.Log($"Equipped {type}: {(selectedItem != null ? selectedItem.itemName : "None")}");
     }
 
@@ -153,6 +195,7 @@ public class InventoryManager : MonoBehaviour
             if (inventoryPanel != null && inventoryPanel.activeSelf)
             {
                 PopulateDropdowns();
+                UpdatePlayerStatsUI();
             }
         }
     }
@@ -176,4 +219,48 @@ public class InventoryManager : MonoBehaviour
     public EquipmentItem GetEquippedWeapon() => equippedWeapon;
     public EquipmentItem GetEquippedArmor() => equippedArmor;
     public EquipmentItem GetEquippedAccessory() => equippedAccessory;
+
+    private void UpdatePlayerStatsUI()
+    {
+        if (playerDataHealthText != null)
+        {
+            playerDataHealthText.text = $"Health: {PlayerData.currentHealth}/{PlayerData.maxHealth}";
+        }
+        if (playerDataAttackText != null)
+        {
+            playerDataAttackText.text = $"Attack: {PlayerData.GetTotalAttack()}";
+        }
+        if (playerDataDefenseText != null)
+        {
+            playerDataDefenseText.text = $"Defense: {PlayerData.GetTotalDefense()}";
+        }
+        if (playerDataStrengthText != null)
+        {
+            playerDataStrengthText.text = $"Strength: {PlayerData.GetTotalStrength()}";
+        }
+        if (playerDataIntelligenceText != null)
+        {
+            playerDataIntelligenceText.text = $"Intelligence: {PlayerData.GetTotalIntelligence()}";
+        }
+        if (playerDataAgilityText != null)
+        {
+            playerDataAgilityText.text = $"Agility: {PlayerData.GetTotalAgility()}";
+        }
+        if (playerDataLuckText != null)
+        {
+            playerDataLuckText.text = $"Luck: {PlayerData.GetTotalLuck()}";
+        }
+        if (playerLevelText != null)
+        {
+            playerLevelText.text = $"LV: {PlayerData.level}";
+        }
+        if (playerExpText != null)
+        {
+            playerExpText.text = $"Exp: {PlayerData.currentExp}/{PlayerData.expToNextLevel}";
+        }
+        if (playerNameText != null)
+        {
+            playerNameText.text = PlayerData.playerName;
+        }
+    }
 }

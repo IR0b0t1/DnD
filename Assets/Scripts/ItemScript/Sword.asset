@@ -19,8 +19,9 @@ MonoBehaviour:
   description: An old sword
   bonusAttack: 3
   bonusDefense: 0
-  bonusStrength: 1
+  bonusStrength: 2
   bonusIntelligence: 0
-  bonusAgility: 0
+  bonusAgility: 3
   bonusLuck: 0
   bonusHeal: 0
+  bonusHealth: 10

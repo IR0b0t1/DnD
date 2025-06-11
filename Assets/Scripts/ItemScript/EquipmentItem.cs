@@ -25,4 +25,5 @@ public class EquipmentItem : ScriptableObject
     public int bonusAgility;
     public int bonusLuck;
     public int bonusHeal;
+    public int bonusHealth;
 }

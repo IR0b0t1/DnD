@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00dc27760f3777346ac4eca9cbfccf02, type: 3}
+  m_Name: ChestDiamondRing
+  m_EditorClassIdentifier: 
+  itemToGive: {fileID: 11400000, guid: bf70c0c89d92a194ba8212df44c1bdab, type: 2}
+  initialMessage: You found an item!

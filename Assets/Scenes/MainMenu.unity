@@ -281,6 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794c5a659ab23254795db9d67bc07d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuBGM: {fileID: 8300000, guid: 19a490ca3d5cf0b4488b0e5074c1b28e, type: 3}
+  bgmVolume: 0.5
 --- !u!4 &161132446
 Transform:
   m_ObjectHideFlags: 0

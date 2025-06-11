@@ -19,8 +19,9 @@ MonoBehaviour:
   description: An old shield. Provides some protection
   bonusAttack: 0
   bonusDefense: 5
-  bonusStrength: 0
+  bonusStrength: 1
   bonusIntelligence: 0
   bonusAgility: 0
-  bonusLuck: 0
+  bonusLuck: 1
   bonusHeal: 0
+  bonusHealth: 10

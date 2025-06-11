@@ -6,12 +6,30 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask waterLayer;
     public Animator _animator;
 
+    [Header("Audio")]
+    public AudioClip walkSoundClip;
+    public float minPitch = 0.9f;
+    public float maxPitch = 1.1f;
+    private AudioSource audioSource;
+
     private Rigidbody2D rb;
     private Vector2 movement;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            audioSource.loop = true;
+            Debug.LogWarning("PlayerMovement: No AudioSource found, added one automatically. Set to loop.", this);
+        }
+        else
+        {
+            audioSource.loop = true;
+        }
     }
 
     void Update()
@@ -20,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         movement.y = Input.GetAxisRaw("Vertical");
 
         UpdateAnimation();
+        UpdateWalkingSound();
     }
 
     void FixedUpdate()
@@ -62,4 +81,25 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void UpdateWalkingSound()
+    {
+        if (audioSource == null || walkSoundClip == null) return;
+
+        if (movement != Vector2.zero)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = walkSoundClip;
+                audioSource.pitch = Random.Range(minPitch, maxPitch);
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
+    }
 }

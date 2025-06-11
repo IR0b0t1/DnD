@@ -19,8 +19,9 @@ MonoBehaviour:
   description: A golden sword. Great damage.
   bonusAttack: 10
   bonusDefense: 0
-  bonusStrength: 2
-  bonusIntelligence: 0
+  bonusStrength: 5
+  bonusIntelligence: 5
   bonusAgility: 0
-  bonusLuck: 0
+  bonusLuck: 2
   bonusHeal: 0
+  bonusHealth: 20

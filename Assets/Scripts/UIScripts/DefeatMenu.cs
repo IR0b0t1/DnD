@@ -11,7 +11,7 @@ public class DefeatMenu : MonoBehaviour
 
     public void OnQuitButton()
     {
-        Debug.Log("Quitting game...");
-        Application.Quit();
+        GameState.playerPosition = new Vector3(0, 0, 0);
+        SceneManager.LoadScene("MainMenu");
     }
 }

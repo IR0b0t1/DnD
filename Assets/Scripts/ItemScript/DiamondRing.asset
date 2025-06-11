@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d3ac4d79d154845ba2b862d5e25358, type: 3}
+  m_Name: DiamondRing
+  m_EditorClassIdentifier: 
+  itemName: Diamond Ring
+  itemType: 2
+  icon: {fileID: -1221982059088582862, guid: 28e67937f92a58a4bb662816c8866c5a, type: 3}
+  price: 0
+  description: A diamond ring. Has powerful healing abilities!
+  bonusAttack: 0
+  bonusDefense: 0
+  bonusStrength: 0
+  bonusIntelligence: 10
+  bonusAgility: 0
+  bonusLuck: 10
+  bonusHeal: 50
+  bonusHealth: 50

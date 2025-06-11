@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using static UnityEngine.Rendering.DebugUI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -12,8 +11,6 @@ public class BattleManager : MonoBehaviour
     public TextMeshProUGUI textbox;
     public TextMeshProUGUI playerHealthText;
     public TextMeshProUGUI enemyHealthText;
-    public Sprite frogSprite;
-    public Sprite goblinSprite;
 
     [Header("Enemy Data")]
     private int enemyHP = 0;
@@ -24,6 +21,7 @@ public class BattleManager : MonoBehaviour
     [Header("Player Data")]
     private int playerHP = 0;
     private int playerMaxHP = 100;
+    private int playerAttackPower = 10;
     private int playerStrenght = 10;
     private int playerIntelligence = 10;
     private int playerAgility = 10;
@@ -31,12 +29,33 @@ public class BattleManager : MonoBehaviour
     private bool playerTurn = true;
     private bool isBusy = false;
 
+    [Header("Audio")]
+    public AudioClip battleBGM;
+    [Range(0f, 1f)]
+    public float bgmVolume = 0.5f;
+    public AudioClip playerAttackSFX;
+    public AudioClip playerMagicSFX;
+    public AudioClip enemyAttackSFX;
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            Debug.LogWarning("BattleManager: No AudioSource found, added one automatically.", this);
+        }
+    }
+
     void Start()
     {
         enemyHP = BattleData.currentEnemy.maxHP;
         enemyMaxHP = BattleData.currentEnemy.maxHP;
         playerHP = PlayerData.currentHealth;
         playerMaxHP = PlayerData.maxHealth;
+        playerAttackPower = PlayerData.GetTotalAttack();
         playerStrenght = PlayerData.GetTotalStrength();
         playerIntelligence = PlayerData.GetTotalIntelligence();
         playerAgility = PlayerData.GetTotalAgility();
@@ -46,15 +65,20 @@ public class BattleManager : MonoBehaviour
 
         enemySpriteRenderer.sprite = BattleData.currentEnemy.enemySprite;
         UpdateHealthUI();
-        StartCoroutine(ShowText("A wild " + BattleData.currentEnemy.enemyName + " appears!"));
-    }
+        StartCoroutine(ShowText(BattleData.currentEnemy.enemyName + " appears!"));
 
-    void SetEnemySprite()
-    {
-        if (BattleData.enemyType == "Frog")
-            enemySpriteRenderer.sprite = frogSprite;
-        else if (BattleData.enemyType == "Goblin")
-            enemySpriteRenderer.sprite = goblinSprite;
+        if (audioSource != null && battleBGM != null)
+        {
+            audioSource.clip = battleBGM;
+            audioSource.loop = true;
+            audioSource.volume = bgmVolume;
+            audioSource.Play();
+            Debug.Log("Battle BGM started.");
+        }
+        else
+        {
+            Debug.LogWarning("BattleManager: Battle BGM AudioSource or Clip not assigned. Cannot play background music.", this);
+        }
     }
 
     public void OnAttackButton()
@@ -62,32 +86,37 @@ public class BattleManager : MonoBehaviour
         if (!playerTurn || isBusy) return;
         isBusy = true;
 
-        int damage = Random.Range(1, 5);
+        int damage = Random.Range(playerAttackPower, playerAttackPower + playerStrenght);
         damage += PlayerData.GetTotalAttack();
         int totalStrength = playerStrenght;
         var weapon = InventoryManager.Instance.GetEquippedWeapon();
         if (weapon != null)
             totalStrength += weapon.bonusStrength;
-        damage *= totalStrength;
+        damage += totalStrength * 2;
         if (playerLuck > Random.Range(0, 100))
         {
             damage *= 2;
             StartCoroutine(ShowText("Critical hit!"));
         }
         enemyHP -= damage;
-        if(enemyHP < 0) enemyHP = 0;
+        if (enemyHP < 0) enemyHP = 0;
         UpdateHealthUI();
         StartCoroutine(PlayerAttackRoutine(damage));
     }
 
     IEnumerator PlayerAttackRoutine(int dmg)
     {
+        if (audioSource != null && playerAttackSFX != null)
+        {
+            audioSource.PlayOneShot(playerAttackSFX);
+        }
+
         yield return ShowText("You attack for " + dmg + " damage!");
         yield return new WaitForSeconds(1f);
 
         if (enemyHP <= 0)
         {
-            yield return ShowText(BattleData.currentEnemy.enemyName + " defeated!");
+            yield return ShowText(BattleData.currentEnemy.enemyName + " has been defeated!");
             int expGained = BattleData.currentEnemy.expReward;
             int goldGained = BattleData.currentEnemy.goldReward;
             PlayerData.GainExperience(expGained);
@@ -99,7 +128,7 @@ public class BattleManager : MonoBehaviour
             if (playerHP > playerMaxHP) playerHP = playerMaxHP;
             PlayerData.currentHealth = playerHP;
             yield return new WaitForSeconds(1.5f);
-            SceneManager.LoadScene("Overworld");
+            EndBattle(true, false);
         }
         else
         {
@@ -113,8 +142,8 @@ public class BattleManager : MonoBehaviour
         if (!playerTurn || isBusy) return;
         isBusy = true;
 
-        int damage = Random.Range(1, 5);
-        damage *= playerIntelligence;
+        int damage = Random.Range(playerAttackPower, playerAttackPower + playerIntelligence);
+        damage += playerIntelligence * 2;
         if (playerLuck > Random.Range(0, 100))
         {
             damage *= 2;
@@ -128,12 +157,21 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator MagicAttackRoutine(int damage)
     {
+        if (audioSource != null && playerMagicSFX != null)
+        {
+            audioSource.PlayOneShot(playerMagicSFX);
+        }
+        else if (audioSource != null && playerAttackSFX != null)
+        {
+            audioSource.PlayOneShot(playerAttackSFX);
+        }
+
         yield return ShowText("You cast a spell for " + damage + " damage!");
         yield return new WaitForSeconds(1f);
 
         if (enemyHP <= 0)
         {
-            yield return ShowText(BattleData.currentEnemy.enemyName + " defeated!");
+            yield return ShowText(BattleData.currentEnemy.enemyName + " has been defeated!");
             int expGained = BattleData.currentEnemy.expReward;
             int goldGained = BattleData.currentEnemy.goldReward;
             PlayerData.GainExperience(expGained);
@@ -145,7 +183,7 @@ public class BattleManager : MonoBehaviour
             if (playerHP > playerMaxHP) playerHP = playerMaxHP;
             PlayerData.currentHealth = playerHP;
             yield return new WaitForSeconds(1.5f);
-            SceneManager.LoadScene("Overworld");
+            EndBattle(true, false);
         }
         else
         {
@@ -159,7 +197,7 @@ public class BattleManager : MonoBehaviour
         if (!playerTurn || isBusy) return;
         isBusy = true;
 
-        int baseHeal = Random.Range(1,5);
+        int baseHeal = Random.Range(1, 5);
         int bonusHeal = 0;
         var accessory = InventoryManager.Instance.GetEquippedAccessory();
         if (accessory != null)
@@ -196,14 +234,16 @@ public class BattleManager : MonoBehaviour
         yield return ShowText("You try to escape...");
         yield return new WaitForSeconds(1f);
 
-        bool escaped = (Random.value * playerAgility) < 0.5f;
+        bool escaped = Random.value < (playerAgility / 100f);
+
         if (escaped)
         {
             yield return ShowText("You got away!");
             Debug.Log("Enemy defeated: " + BattleData.currentEnemyID);
             GameState.defeatedEnemies.Add(BattleData.currentEnemyID);
+            PlayerData.currentHealth = playerHP;
             yield return new WaitForSeconds(1.5f);
-            SceneManager.LoadScene("Overworld");
+            EndBattle(true, true);
         }
         else
         {
@@ -216,17 +256,27 @@ public class BattleManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1f);
-        yield return ShowText(BattleData.currentEnemy.enemyName + " attacks!");
 
-        int damage = Random.Range(5, 15);
+        if (audioSource != null && enemyAttackSFX != null)
+        {
+            audioSource.PlayOneShot(enemyAttackSFX);
+        }
+
+        int damage = Random.Range(enemyMinAttackPower, enemyMaxAttackPower);
+        damage = Mathf.Max(0, damage - PlayerData.GetTotalDefense());
+
         playerHP -= damage;
         if (playerHP < 0) playerHP = 0;
         UpdateHealthUI();
-        if ( playerHP <= 0)
+
+        if (playerHP <= 0)
         {
-            yield return ShowText("You've been defeated!");
+            yield return ShowText(BattleData.currentEnemy.enemyName + " attacks for " + damage + " damage!");
             yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("Overworld");
+            yield return ShowText("You've been defeated!");
+            PlayerData.currentHealth = playerHP;
+            yield return new WaitForSeconds(1f);
+            EndBattle(false, false);
         }
         else
         {
@@ -250,5 +300,29 @@ public class BattleManager : MonoBehaviour
         textbox.text = message;
         yield return new WaitForSeconds(1.5f);
         onComplete?.Invoke();
+    }
+
+    void EndBattle(bool playerWon, bool escaped)
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            Debug.Log("Battle BGM stopped.");
+        }
+
+        if (playerWon)
+        {
+            if(escaped)
+                if(GameState.playerPosition.x < 0)
+                    GameState.playerPosition += new Vector3((float)1.5, 0, 0);
+                else
+                    GameState.playerPosition += new Vector3((float)-1.5, 0, 0);
+            SceneManager.LoadScene("Overworld");
+        }
+        else
+        {
+            GameState.playerPosition = new Vector3(0, 0, 0);
+            SceneManager.LoadScene("DefeatScene");
+        }
     }
 }

@@ -1410,6 +1410,12 @@ MonoBehaviour:
   shopInventory:
   - {fileID: 11400000, guid: 97a78c77bd2ea824685c02ad67653085, type: 2}
   - {fileID: 11400000, guid: d3cc7454ba08b364c9f6e4c430f04405, type: 2}
+  - {fileID: 11400000, guid: c68db625e873af4469a56fef0ed85224, type: 2}
+  shopBGM: {fileID: 8300000, guid: afc07cf66825e804bb8381cbb61ffc87, type: 3}
+  bgmVolume: 0.5
+  shopExitDoorSFX: {fileID: 8300000, guid: 093e3a50fa00f924f87ff37e49f32037, type: 3}
+  buySuccessSFX: {fileID: 8300000, guid: 2556edb0b911dc548a4a4f167bccf9b9, type: 3}
+  buyDeclineSFX: {fileID: 8300000, guid: fc3c190d5419b07478e590770ef5f884, type: 3}
 --- !u!4 &1341080438
 Transform:
   m_ObjectHideFlags: 0

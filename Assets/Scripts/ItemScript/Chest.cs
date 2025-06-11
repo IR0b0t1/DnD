@@ -18,6 +18,11 @@ public class Chest : MonoBehaviour
 
     private bool isOpened = false;
 
+    [Header("Audio")]
+    public AudioClip chestOpenSFX;
+    public AudioClip chestCloseSFX;
+    private AudioSource audioSource;
+
     void OnValidate()
     {
         if (string.IsNullOrEmpty(chestID))
@@ -29,6 +34,13 @@ public class Chest : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+            Debug.LogWarning("Chest: No AudioSource found, added one automatically.", this);
+        }
     }
 
     private void Start()
@@ -77,6 +89,11 @@ public class Chest : MonoBehaviour
         isOpened = true;
         spriteRenderer.sprite = openSprite;
 
+        if (audioSource != null && chestOpenSFX != null)
+        {
+            audioSource.PlayOneShot(chestOpenSFX);
+        }
+
         if (InventoryManager.Instance != null && chestData != null && chestData.itemToGive != null)
         {
             InventoryManager.Instance.AddItem(chestData.itemToGive);
@@ -119,7 +136,13 @@ public class Chest : MonoBehaviour
     private void HideMessage()
     {
         if (messageBoxPanel != null)
+        {
             messageBoxPanel.SetActive(false);
+            if (audioSource != null && chestCloseSFX != null)
+            {
+                audioSource.PlayOneShot(chestCloseSFX);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -136,26 +159,15 @@ public class Chest : MonoBehaviour
 
     // Ta pozornie prosta i sensowna metoda doprowadzi³a autora do za³amania nerwowego, poniewa¿ uwali³a ca³y system wiadomoœci. Shame on you, Unity and C#!!!!!!
     //private void OnTriggerExit2D(Collider2D other)
-
     //{
-
     //    if (other.CompareTag("Player"))
-
     //    {
-
     //        isPlayerNear = false;
-
     //        if (messageBoxPanel != null && messageBoxPanel.activeSelf)
-
     //        {
-
     //            CancelInvoke("HideMessage");
-
     //            HideMessage();
-
     //        }
-
     //    }
-
     //}
 }

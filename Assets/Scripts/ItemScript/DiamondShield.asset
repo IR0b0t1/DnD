@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d3ac4d79d154845ba2b862d5e25358, type: 3}
+  m_Name: DiamondShield
+  m_EditorClassIdentifier: 
+  itemName: Diamond Shield
+  itemType: 1
+  icon: {fileID: -3292294839590762343, guid: f80e1b1fbed38d74eabcbae38aed7a8f, type: 3}
+  price: 0
+  description: A Diamond Shield. Strongest of all!
+  bonusAttack: 0
+  bonusDefense: 50
+  bonusStrength: 20
+  bonusIntelligence: 0
+  bonusAgility: 0
+  bonusLuck: 0
+  bonusHeal: 0
+  bonusHealth: 50
