@@ -330,6 +330,7 @@ public class BattleManager : MonoBehaviour
         else
         {
             GameState.playerPosition = new Vector3(0, 0, 0);
+            PlayerData.currentHealth = PlayerData.maxHealth;
             SceneManager.LoadScene("DefeatScene");
         }
     }
