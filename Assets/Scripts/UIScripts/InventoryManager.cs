@@ -20,6 +20,11 @@ public class InventoryManager : MonoBehaviour
     private EquipmentItem equippedArmor;
     private EquipmentItem equippedAccessory;
 
+    [Header("Default Starting Items")]
+    public EquipmentItem defaultWeapon;
+    public EquipmentItem defaultArmor;
+    public EquipmentItem defaultAccessory;
+
     [Header("Player Data UI Textboxes")]
     public TextMeshProUGUI playerDataHealthText;
     public TextMeshProUGUI playerDataAttackText;
@@ -269,5 +274,38 @@ public class InventoryManager : MonoBehaviour
         {
             playerDataGold.text = $"Gold: {PlayerData.currentGold}";
         }
+    }
+
+    public void ResetInventory()
+    {
+        allItems.Clear();
+
+        equippedWeapon = null;
+        equippedArmor = null;
+        equippedAccessory = null;
+
+        PlayerData.weapon = null;
+        PlayerData.armor = null;
+        PlayerData.accessory = null;
+
+        if (defaultWeapon != null)
+        {
+            AddItem(defaultWeapon);
+        }
+        if (defaultArmor != null)
+        {
+            AddItem(defaultArmor);
+        }
+        if (defaultAccessory != null)
+        {
+            AddItem(defaultAccessory);
+        }
+
+        if (inventoryPanel != null && inventoryPanel.activeSelf)
+        {
+            PopulateDropdowns();
+            UpdatePlayerStatsUI();
+        }
+        Debug.Log("Inventory has been reset and default items added/equipped.");
     }
 }

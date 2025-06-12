@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class ShopTrigger : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ShopTrigger : MonoBehaviour
     [Header("Audio")]
     public AudioClip doorOpenSFX;
     private AudioSource audioSource;
+    public AudioMixerGroup mixerGroup;
 
     private bool isTriggered = false;
 
@@ -21,6 +23,15 @@ public class ShopTrigger : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
             Debug.LogWarning("ShopTrigger: No AudioSource found, added one automatically.", this);
+        }
+
+        if (mixerGroup != null)
+        {
+            audioSource.outputAudioMixerGroup = mixerGroup;
+        }
+        else
+        {
+            Debug.LogWarning("Chest: SFX Mixer Group not assigned for chest. Volume control via mixer might not work.", this);
         }
     }
 

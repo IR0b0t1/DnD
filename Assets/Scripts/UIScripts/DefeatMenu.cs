@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class DefeatMenu : MonoBehaviour
@@ -6,9 +7,8 @@ public class DefeatMenu : MonoBehaviour
     [Header("Audio")]
     // To jest dŸwiêk mojej pora¿ki, kiedy widzê 20 b³¹dów w konsoli po zmianie lokalizacji jednego pliku. (Tak faktycznie by³o, dlatego pliki przeciwników s¹ w UI (NIE RUSZAÆ ICH BO WSZYSTKO SZLAG TRAFI!!!)
     public AudioClip defeatBGM;
-    [Range(0f, 1f)]
-    public float bgmVolume = 0.5f;
     private AudioSource audioSource;
+    public AudioMixerGroup mixerGroup;
 
     void Awake()
     {
@@ -20,6 +20,15 @@ public class DefeatMenu : MonoBehaviour
             audioSource.loop = true;
             Debug.LogWarning("DefeatMenu: No AudioSource found, added one automatically.", this);
         }
+
+        if (mixerGroup != null)
+        {
+            audioSource.outputAudioMixerGroup = mixerGroup;
+        }
+        else
+        {
+            Debug.LogWarning("Chest: SFX Mixer Group not assigned for chest. Volume control via mixer might not work.", this);
+        }
     }
 
     void Start()
@@ -27,7 +36,6 @@ public class DefeatMenu : MonoBehaviour
         if (audioSource != null && defeatBGM != null)
         {
             audioSource.clip = defeatBGM;
-            audioSource.volume = bgmVolume;
             audioSource.Play();
             Debug.Log("Defeat BGM started.");
         }

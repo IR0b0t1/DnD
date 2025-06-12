@@ -10,4 +10,5 @@ public class EnemyData : ScriptableObject
     public int maxAttackPower;
     public int expReward;
     public int goldReward;
+    public bool canStun;
 }

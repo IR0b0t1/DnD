@@ -19,3 +19,4 @@ MonoBehaviour:
   maxAttackPower: 100
   expReward: 500
   goldReward: 500
+  canStun: 1

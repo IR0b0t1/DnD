@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class Chest : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Chest : MonoBehaviour
     public AudioClip chestOpenSFX;
     public AudioClip chestCloseSFX;
     private AudioSource audioSource;
+    public AudioMixerGroup sfxMixerGroup;
 
     void OnValidate()
     {
@@ -40,6 +42,15 @@ public class Chest : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
             Debug.LogWarning("Chest: No AudioSource found, added one automatically.", this);
+        }
+
+        if (sfxMixerGroup != null)
+        {
+            audioSource.outputAudioMixerGroup = sfxMixerGroup;
+        }
+        else
+        {
+            Debug.LogWarning("Chest: SFX Mixer Group not assigned for chest. Volume control via mixer might not work.", this);
         }
     }
 

@@ -844,6 +844,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a3f07541391574385110ff752a596f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defeatBGM: {fileID: 8300000, guid: c4be985afae762d40ac7e2b31faabf12, type: 3}
+  mixerGroup: {fileID: 24300002, guid: 281cf84dea3cadb47be56459c1bae56c, type: 2}
 --- !u!4 &1663239734
 Transform:
   m_ObjectHideFlags: 0

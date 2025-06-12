@@ -25,10 +25,63 @@ public static class PlayerData
     public static EquipmentItem armor;
     public static EquipmentItem accessory;
 
+    private const int DEFAULT_LEVEL = 1;
+    private const int DEFAULT_BASE_MAX_HEALTH = 30;
+    private const int DEFAULT_ATTACK = 1;
+    private const int DEFAULT_DEFENSE = 0;
+    private const int DEFAULT_STRENGTH = 1;
+    private const int DEFAULT_INTELLIGENCE = 1;
+    private const int DEFAULT_AGILITY = 1;
+    private const int DEFAULT_LUCK = 1;
+    private const int DEFAULT_EXP_TO_NEXT_LEVEL = 100;
+    private const int DEFAULT_GOLD = 100;
+
     public static void InitializePlayerData()
     {
         RecalculateAndAdjustHealth();
         currentHealth = Mathf.Min(currentHealth, maxHealth);
+        if (maxHealth == 0)
+        {
+            maxHealth = CalculateEffectiveMaxHealth();
+            currentHealth = maxHealth;
+        }
+    }
+
+    public static void ResetCharacter()
+    {
+        Debug.Log("Resetting Player Data to initial state...");
+
+        playerName = "Jonathan Does";
+
+        level = DEFAULT_LEVEL;
+        baseMaxHealth = DEFAULT_BASE_MAX_HEALTH;
+        currentExp = 0;
+        expToNextLevel = DEFAULT_EXP_TO_NEXT_LEVEL;
+        currentGold = DEFAULT_GOLD;
+
+        attack = DEFAULT_ATTACK;
+        defense = DEFAULT_DEFENSE;
+        strength = DEFAULT_STRENGTH;
+        intelligence = DEFAULT_INTELLIGENCE;
+        agility = DEFAULT_AGILITY;
+        luck = DEFAULT_LUCK;
+
+        weapon = null;
+        armor = null;
+        accessory = null;
+
+        RecalculateAndAdjustHealth();
+        currentHealth = maxHealth;
+
+        GameState.ResetGameState();
+        if (InventoryManager.Instance != null)
+        {
+            InventoryManager.Instance.ResetInventory();
+        }
+        else
+        {
+            Debug.LogWarning("InventoryManager.Instance is null. Cannot reset inventory.");
+        }
     }
 
     public static int GetBonusHeal()

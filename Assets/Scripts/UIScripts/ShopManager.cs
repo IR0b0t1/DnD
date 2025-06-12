@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class ShopManager : MonoBehaviour
 {
@@ -18,8 +19,7 @@ public class ShopManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip shopBGM;
-    [Range(0f, 1f)]
-    public float bgmVolume = 0.5f;
+    public AudioMixerGroup musicMixerGroup;
     public AudioClip shopExitDoorSFX;
     public AudioClip buySuccessSFX;
     public AudioClip buyDeclineSFX;
@@ -34,6 +34,15 @@ public class ShopManager : MonoBehaviour
             audioSource.playOnAwake = false;
             Debug.LogWarning("ShopManager: No AudioSource found, added one automatically.", this);
         }
+
+        if (musicMixerGroup != null)
+        {
+            audioSource.outputAudioMixerGroup = musicMixerGroup;
+        }
+        else
+        {
+            Debug.LogWarning("MainMenu: Music Mixer Group not assigned. Volume control via mixer might not work.");
+        }
     }
 
     void Start()
@@ -47,7 +56,6 @@ public class ShopManager : MonoBehaviour
         {
             audioSource.clip = shopBGM;
             audioSource.loop = true;
-            audioSource.volume = bgmVolume;
             audioSource.Play();
             Debug.Log("Shop BGM started.");
         }

@@ -1300,7 +1300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defeatBGM: {fileID: 8300000, guid: bb71bdc55bd4ff348ae136f25ea5f1a8, type: 3}
-  bgmVolume: 0.5
+  mixerGroup: {fileID: 24300002, guid: 281cf84dea3cadb47be56459c1bae56c, type: 2}
 --- !u!1 &2054028337
 GameObject:
   m_ObjectHideFlags: 0

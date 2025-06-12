@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class OverworldManager : MonoBehaviour
 {
@@ -8,8 +9,7 @@ public class OverworldManager : MonoBehaviour
 
     [Header("Background Music")]
     public AudioClip overworldBGM;
-    [Range(0f, 1f)]
-    public float bgmVolume = 0.5f;
+    public AudioMixerGroup musicMixerGroup;
     private AudioSource bgmAudioSource;
 
     public static OverworldManager Instance { get; private set; }
@@ -29,8 +29,16 @@ public class OverworldManager : MonoBehaviour
                 bgmAudioSource.loop = true;
                 Debug.LogWarning("OverworldManager: No AudioSource found for BGM, added one automatically.", this);
             }
-            bgmAudioSource.volume = bgmVolume;
             bgmAudioSource.clip = overworldBGM;
+
+            if (musicMixerGroup != null)
+            {
+                bgmAudioSource.outputAudioMixerGroup = musicMixerGroup;
+            }
+            else
+            {
+                Debug.LogWarning("MainMenu: Music Mixer Group not assigned. Volume control via mixer might not work.");
+            }
 
         }
         else
@@ -101,7 +109,6 @@ public class OverworldManager : MonoBehaviour
             if (!bgmAudioSource.isPlaying || bgmAudioSource.clip != overworldBGM)
             {
                 bgmAudioSource.clip = overworldBGM;
-                bgmAudioSource.volume = bgmVolume;
                 bgmAudioSource.Play();
                 Debug.Log("Overworld BGM started.");
             }

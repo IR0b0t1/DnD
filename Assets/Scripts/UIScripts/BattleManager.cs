@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class BattleManager : MonoBehaviour
 {
@@ -31,8 +32,7 @@ public class BattleManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip battleBGM;
-    [Range(0f, 1f)]
-    public float bgmVolume = 0.5f;
+    public AudioMixerGroup musicMixerGroup;
     public AudioClip playerAttackSFX;
     public AudioClip playerMagicSFX;
     public AudioClip enemyAttackSFX;
@@ -46,6 +46,15 @@ public class BattleManager : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
             Debug.LogWarning("BattleManager: No AudioSource found, added one automatically.", this);
+        }
+
+        if (musicMixerGroup != null)
+        {
+            audioSource.outputAudioMixerGroup = musicMixerGroup;
+        }
+        else
+        {
+            Debug.LogWarning("MainMenu: Music Mixer Group not assigned. Volume control via mixer might not work.");
         }
     }
 
@@ -71,7 +80,6 @@ public class BattleManager : MonoBehaviour
         {
             audioSource.clip = battleBGM;
             audioSource.loop = true;
-            audioSource.volume = bgmVolume;
             audioSource.Play();
             Debug.Log("Battle BGM started.");
         }
@@ -280,7 +288,7 @@ public class BattleManager : MonoBehaviour
         }
         else
         {
-            yield return ShowText("You took " + damage + " damage!");
+            yield return ShowText(BattleData.currentEnemy.enemyName + " attacks for " + damage + " damage!");
             PlayerData.currentHealth = playerHP;
             yield return new WaitForSeconds(1f);
             yield return ShowText("Your turn");

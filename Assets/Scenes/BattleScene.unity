@@ -734,7 +734,7 @@ MonoBehaviour:
   playerHealthText: {fileID: 338073763}
   enemyHealthText: {fileID: 1782541739}
   battleBGM: {fileID: 8300000, guid: 05defe730f08c2b4eb8afd97a0dda442, type: 3}
-  bgmVolume: 0.5
+  musicMixerGroup: {fileID: 24300002, guid: 281cf84dea3cadb47be56459c1bae56c, type: 2}
   playerAttackSFX: {fileID: 8300000, guid: 6aee910f8bc188d4f9fcb66febc9dcad, type: 3}
   playerMagicSFX: {fileID: 8300000, guid: 6aee910f8bc188d4f9fcb66febc9dcad, type: 3}
   enemyAttackSFX: {fileID: 8300000, guid: 6aee910f8bc188d4f9fcb66febc9dcad, type: 3}
@@ -762,7 +762,7 @@ AudioSource:
   m_GameObject: {fileID: 888768424}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 281cf84dea3cadb47be56459c1bae56c, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
