@@ -22,3 +22,6 @@ Then choose MainMenu and run the game.
 ## Additional info
 
 This is fourth iteration of this project. Previous three were deleted because of technical issues either with Unity Engine or/and Github itself.
+
+## Project Version
+1.0.000 Release (newest) - 12.06.2025
